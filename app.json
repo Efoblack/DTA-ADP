@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "dtaadp",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "ios": {
       "icon": "./assets/expo.icon"
     },
@@ -25,6 +25,14 @@
     },
     "plugins": [
       "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "AgriTrust uses your photos only when you choose a crop image to diagnose.",
+          "cameraPermission": "AgriTrust uses the camera only when you take a crop photo to diagnose.",
+          "microphonePermission": false
+        }
+      ],
       [
         "expo-splash-screen",
         {
