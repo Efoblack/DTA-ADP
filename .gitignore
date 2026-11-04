@@ -21,17 +21,37 @@ expo-env.d.ts
 # Metro
 .metro-health-check*
 
-# debug
+# debug / logs
 npm-debug.*
 yarn-debug.*
 yarn-error.*
+pnpm-debug.*
+*.log
+
+# local app builds
+*.apk
+*.aab
+*.ipa
+
+# test coverage
+coverage/
+
+# editors / tools (shared .vscode settings stay tracked)
+.idea/
+.claude/settings.local.json
 
 # macOS
 .DS_Store
 *.pem
 
-# local env files
-.env*.local
+# Windows
+Thumbs.db
+desktop.ini
+
+# env files (API keys/URLs for the backend integration) — commit only the example
+.env
+.env.*
+!.env.example
 
 # typescript
 *.tsbuildinfo
