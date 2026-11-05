@@ -131,6 +131,19 @@ export default function DealerListScreen() {
         <Icon name="chevronRight" size={18} />
       </PressableCard>
 
+      <PressableCard
+        tone="gray"
+        style={styles.buyersEntry}
+        accessibilityLabel={`${t('marketplace.list.ledgerEntryTitle')}. ${t('marketplace.list.ledgerEntryBody')}`}
+        onPress={() => router.push('/payments/ledger')}>
+        <Icon name="document" size={24} />
+        <View style={styles.flex}>
+          <AppText variant="cardHeading">{t('marketplace.list.ledgerEntryTitle')}</AppText>
+          <AppText variant="body">{t('marketplace.list.ledgerEntryBody')}</AppText>
+        </View>
+        <Icon name="chevronRight" size={18} />
+      </PressableCard>
+
       <View style={styles.footnote}>
         <Icon name="privacy" size={16} color="textSecondary" />
         <AppText variant="caption" color="textSecondary" style={styles.flex}>

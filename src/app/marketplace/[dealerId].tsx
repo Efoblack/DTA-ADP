@@ -1,4 +1,4 @@
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -14,6 +14,7 @@ import { Screen } from '@/components/screen';
 import { SectionTitle } from '@/components/screen-intro';
 import { AppText } from '@/components/ui/app-text';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { Card, PressableCard } from '@/components/ui/card';
 import { Colors, Space } from '@/constants/theme';
 import { useT } from '@/i18n';
@@ -138,7 +139,23 @@ export default function DealerDetailScreen() {
         ))}
       </View>
 
-      {verified && selected && <PriceBreakdownCard breakdown={buildPriceBreakdown(dealer, selected)} />}
+      {verified && selected && (
+        <>
+          <PriceBreakdownCard breakdown={buildPriceBreakdown(dealer, selected)} />
+          <Button
+            label={t('marketplace.detail.continue')}
+            variant="accent"
+            trailingIcon="arrowRight"
+            fullWidth
+            onPress={() =>
+              router.push({
+                pathname: '/payments/review',
+                params: { dealerId: dealer.id, productId: selected.id },
+              })
+            }
+          />
+        </>
+      )}
     </Screen>
   );
 }

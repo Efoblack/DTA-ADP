@@ -43,6 +43,22 @@ export function getDealer(dealerId: string): Dealer | undefined {
   return SAMPLE_DEALERS.find((d) => d.id === dealerId);
 }
 
+/**
+ * The dealer + product for a (simulated) purchase — only if the dealer is
+ * verified and the product is in stock. Payment screens refuse anything else.
+ */
+export function getPurchasableItem(
+  dealerId: string | undefined,
+  productId: string | undefined,
+): { dealer: Dealer; product: DealerProduct } | undefined {
+  const dealer = dealerId ? getDealer(dealerId) : undefined;
+  const product = dealer?.products.find((p) => p.id === productId);
+  if (!dealer || !product || dealer.verification.status !== 'verified' || !product.inStock) {
+    return undefined;
+  }
+  return { dealer, product };
+}
+
 // ── Buyer matching ───────────────────────────────────────────────────────────
 
 /** Crops that have at least one verified buyer offer, in data order. */
