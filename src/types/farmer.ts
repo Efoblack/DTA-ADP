@@ -2,6 +2,7 @@
  * Farmer-side domain types (see docs/features/farmer.md §10).
  * These are the contracts the backend API should satisfy.
  */
+import type { DiseaseId } from '@/types/marketplace';
 
 export type District = 'Ho West' | 'Kpando' | 'Hohoe' | 'Afadzato South';
 
@@ -45,6 +46,8 @@ export type DiagnosisInput = {
 
 export type DiagnosisResult = {
   label: string;
+  /** Machine-readable id, matched against DealerProduct.forDiseases (marketplace). */
+  diseaseId?: DiseaseId;
   /** 0–100 */
   confidence: number;
   confidenceBand: ConfidenceBand;

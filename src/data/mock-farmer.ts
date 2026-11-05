@@ -46,6 +46,7 @@ export const mockActiveFarmRecords = 2;
 /** The prototype's (simulated) diagnosis — returned for every submission. */
 export const mockDiagnosisResult: DiagnosisResult = {
   label: 'Possible fall armyworm damage',
+  diseaseId: 'fall-armyworm',
   confidence: 72,
   confidenceBand: 'Moderate',
   reasons: [

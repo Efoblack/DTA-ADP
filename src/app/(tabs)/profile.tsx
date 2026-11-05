@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Icon, type IconName } from '@/components/ui/icon';
 import { Colors, Layout, Space } from '@/constants/theme';
+import { LanguageSwitch } from '@/i18n/language-switch';
 import { useFarmer } from '@/state/farmer-store';
 import type { ConsentPurpose } from '@/types/farmer';
 
@@ -84,6 +85,8 @@ export default function ProfileScreen() {
           />
           <View style={styles.divider} />
           <SettingsRow icon="leaf" label="My diagnoses" href="/diagnose" />
+          <View style={styles.divider} />
+          <LanguageSwitch />
         </Card>
       </View>
     </ScrollView>
