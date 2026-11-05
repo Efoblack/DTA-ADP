@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/card';
 import { ChipGroup } from '@/components/ui/chip';
 import { Icon, type IconName } from '@/components/ui/icon';
 import { Layout, Space, type Palette } from '@/constants/theme';
+import { LanguageSwitch } from '@/i18n/language-switch';
 import { useFarmer } from '@/state/farmer-store';
 import { useSession } from '@/state/session';
 import { useStyles, useTheme, type ThemePreference } from '@/theme';
@@ -100,6 +101,8 @@ export default function ProfileScreen() {
           />
           <View style={styles.divider} />
           <SettingsRow icon="leaf" label="My diagnoses" href="/diagnose" />
+          <View style={styles.divider} />
+          <LanguageSwitch />
         </Card>
       </View>
 

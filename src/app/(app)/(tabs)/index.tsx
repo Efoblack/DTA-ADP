@@ -10,12 +10,14 @@ import { FAB_CLEARANCE, FloatingActionButton } from '@/components/ui/floating-ac
 import { Icon } from '@/components/ui/icon';
 import { IconButton } from '@/components/ui/icon-button';
 import { Layout, Radius, Space, type Palette } from '@/constants/theme';
+import { useT } from '@/i18n';
 import { useFarmer } from '@/state/farmer-store';
 import { useStyles, useTheme } from '@/theme';
 
 const TRUST_POINTS = ['Privacy controls active', 'Secure access', 'Human review available'];
 
 export default function HomeScreen() {
+  const t = useT();
   const insets = useSafeAreaInsets();
   const {
     profile,
@@ -204,6 +206,13 @@ export default function HomeScreen() {
                 trailingIcon="arrowRight"
                 fullWidth
                 onPress={() => router.push('/market')}
+              />
+              <Button
+                label={t('marketplace.homeEntry')}
+                variant="secondary"
+                leadingIcon="people"
+                fullWidth
+                onPress={() => router.push('/marketplace')}
               />
             </Card>
           </View>
