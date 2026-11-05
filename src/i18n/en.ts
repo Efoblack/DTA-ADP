@@ -9,6 +9,12 @@ export const en = {
     sampleDataBody: 'These dealers, buyers, products and prices are examples for testing. They are not real.',
     offlineTitle: "You're offline",
     offlineBody: 'Showing information saved on this phone. Anything you do is saved and will sync when you reconnect.',
+    language: 'Language',
+    languageSheetTitle: 'Choose language',
+    languageSheetBody: 'This changes the marketplace and payment screens. Other screens are in English for now.',
+    twiDraftNote: 'The Twi text is a draft and still needs checking by a native speaker.',
+    save: 'Save',
+    cancel: 'Cancel',
   },
   diseases: {
     'fall-armyworm': 'Fall armyworm',
@@ -23,6 +29,7 @@ export const en = {
   },
   marketplace: {
     homeEntry: 'Find verified dealers',
+    diagnosisLink: 'Find dealers for {disease}',
     list: {
       headerTitle: 'Marketplace',
       eyebrow: 'Marketplace',
@@ -30,6 +37,7 @@ export const en = {
       description: 'Every dealer listed here has been checked. Compare delivery cost and time before you buy.',
       filterTitle: 'Products for {disease}',
       filterBody: 'Showing dealers that sell products for {disease}, from your diagnosis.',
+      filterCaution: 'Ask an extension officer to confirm before you buy or apply any treatment.',
       showAll: 'Show all dealers',
       emptyTitle: 'No verified dealers found',
       emptyBody: 'No verified dealer sells products for this problem yet.',

@@ -17,10 +17,13 @@ import { TextField } from '@/components/ui/text-field';
 import { useToast } from '@/components/ui/toast';
 import { Colors, Radius, Space } from '@/constants/theme';
 import { useReviewRequest } from '@/hooks/use-review-request';
+import { useT } from '@/i18n';
+import { listVerifiedDealers } from '@/services/marketplace-api';
 import { useFarmer } from '@/state/farmer-store';
 import { formatDate } from '@/utils/format';
 
 export default function DiagnosisResultScreen() {
+  const t = useT();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { diagnoses, deleteDiagnosisImage, reportIncorrectResult } = useFarmer();
   const toast = useToast();
@@ -42,6 +45,11 @@ export default function DiagnosisResultScreen() {
   }
 
   const { result } = diagnosis;
+  // Link to dealers only when a verified dealer sells a product for this problem.
+  const dealerDisease =
+    result.diseaseId && listVerifiedDealers({ disease: result.diseaseId }).length > 0
+      ? result.diseaseId
+      : undefined;
 
   const sendReport = async () => {
     setBusy(true);
@@ -142,6 +150,16 @@ export default function DiagnosisResultScreen() {
                 result.label.replace(/ damage$/, ''),
               )
             }
+          />
+        )}
+
+        {dealerDisease && (
+          <Button
+            label={t('marketplace.diagnosisLink', { disease: t(`diseases.${dealerDisease}`) })}
+            variant="secondary"
+            leadingIcon="market"
+            fullWidth
+            onPress={() => router.push({ pathname: '/marketplace', params: { disease: dealerDisease } })}
           />
         )}
 

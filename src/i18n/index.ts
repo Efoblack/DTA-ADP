@@ -11,7 +11,10 @@
  */
 import { useSyncExternalStore } from 'react';
 
+import { loadJson, saveJson } from '@/state/persist';
+
 import { en } from './en';
+import { tw } from './tw';
 
 type Plural = { readonly one: string; readonly other: string };
 
@@ -27,16 +30,31 @@ export type TranslationKey = KeyPaths<typeof en>;
 
 type Params = Record<string, string | number>;
 
-const dictionaries = { en } satisfies Record<string, Dictionary>;
+const dictionaries = { en, tw } satisfies Record<string, Dictionary>;
 export type Language = keyof typeof dictionaries;
+
+export const LANGUAGES: readonly Language[] = ['en', 'tw'];
+
+/** Language names are shown in their own language, so they aren't translated. */
+export const LANGUAGE_NAMES: Record<Language, string> = { en: 'English', tw: 'Twi' };
+
+/** Languages whose strings are still drafts awaiting native-speaker review. */
+export const NEEDS_REVIEW: ReadonlySet<Language> = new Set<Language>(['tw']);
 
 // ── Current language (module-level store, no provider needed) ────────────────
 
-let current: Language = 'en';
+const STORAGE_KEY = 'app.language.v1';
+const isLanguage = (value: unknown): value is Language =>
+  typeof value === 'string' && value in dictionaries;
+
+const saved = loadJson<unknown>(STORAGE_KEY, 'en');
+let current: Language = isLanguage(saved) ? saved : 'en';
 const listeners = new Set<() => void>();
 
+/** Change the language; remembered on this phone. */
 export function setLanguage(language: Language) {
   current = language;
+  saveJson(STORAGE_KEY, language);
   listeners.forEach((l) => l());
 }
 

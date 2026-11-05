@@ -46,6 +46,7 @@ export default function DealerListScreen() {
             <AppText variant="body">
               {t('marketplace.list.filterBody', { disease: diseaseName })}
             </AppText>
+            <AppText variant="body">{t('marketplace.list.filterCaution')}</AppText>
             <Button
               label={t('marketplace.list.showAll')}
               variant="primary"
